@@ -12,8 +12,24 @@ const API_LINK_WEATHER = 'https://api.openweathermap.org/data/2.5/weather?lat='
 const API_LINK_GEOCODING = 'http://api.openweathermap.org/geo/1.0/direct?q='
 const API_UNITS = '&units=metric'
 
-const showInputval = () => {
+const getWeather = () => {
+    const city = input.value || 'Warszawa'
+    const URL = API_LINK_GEOCODING + city + '&limit=1' + API_KEY
+
+    axios.get(URL)
+        .then(res => {
+            const lat = res.data[0].lat
+            const lon = res.data[0].lon
+            const URL = API_LINK_WEATHER + lat + '&lon=' + lon + API_KEY + API_UNITS
+            axios.get(URL)
+                .then(res => {
+                    weather.textContent = res.data.weather[0].main
+                    temperature.textContent = Math.floor(res.data.main.temp)
+                    humidity.textContent = res.data.main.humidity
+                })
+        })
+
     cityName.textContent = input.value
 }
 
-button.addEventListener('click', showInputval)
+button.addEventListener('click', getWeather)
