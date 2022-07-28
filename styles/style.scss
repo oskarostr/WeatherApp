@@ -1,3 +1,5 @@
+$light-color: #A5C9CA;
+
 * {
     padding: 0;
     margin: 0;
@@ -11,12 +13,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #7f5a83;
+    background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
 }
 
 .wrapper {
     width: 600px;
     height: 300px;
-    background-color: red;
+    background-color: $light-color;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -30,6 +34,7 @@ body {
     h1 {
         text-align: center;
         text-transform: capitalize;
+        font-size: 38px;
     }
 
     .main-info {
@@ -37,8 +42,11 @@ body {
         justify-content: space-around;
         align-items: center;
 
-        h3 {
+        .city-name {
             text-align: center;
+            text-transform: capitalize;
+            font-size: 28px;
+            letter-spacing: 1px;
         }
 
         input {
@@ -66,12 +74,13 @@ body {
     .headings {
         text-align: center;
         display: grid;
-        grid-template-columns: 200px 200px 200px;
+        grid-template-columns: 33% 33% 33%;
+        margin-bottom: 1rem;
     }
 
     .weather-info {
         text-align: center;
         display: grid;
-        grid-template-columns: 200px 200px 200px;
+        grid-template-columns: 33% 33% 33%;
     }
 }
