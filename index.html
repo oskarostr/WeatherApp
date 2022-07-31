@@ -12,7 +12,8 @@
     <script src="https://kit.fontawesome.com/2916ab9bdd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="./js/script.js" defer></script>
 </head>
 
 <body>
@@ -22,7 +23,9 @@
             <div class="main-info">
                 <div>
                     <h3 class="city-name"></h3>
-                    <input type="text" placeholder="Wpisz nazwę miasta..." autocomplete="off"><button>Wyślij</button>
+                    <input type="text" placeholder="Wpisz nazwę miasta..." autocomplete="off">
+                    <button class = 'city-btn'>Wyślij</button>
+                    <button class = 'user-city-btn'>Moje miasto</button>
                     <p class="warning"></p>
                 </div>
                 <img src="./img/clear.png" alt="Obrazek przedstawiający pogodę" class="photo">
@@ -41,11 +44,9 @@
             </div>
         </div>
     </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <script src="./js/script.js"></script>
+    <div class="slider">
+        <div class = 'theme-toggle'></dic>
+    </div>
 </body>
 
 </html>

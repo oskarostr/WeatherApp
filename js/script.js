@@ -1,14 +1,17 @@
 const input = document.querySelector('input')
-const button = document.querySelector('button')
+const cityBtn = document.querySelector('.city-btn')
+const userCityBtn = document.querySelector('.user-city-btn')
 const cityName = document.querySelector('.city-name')
 const warning = document.querySelector('.warning')
 const photo = document.querySelector('.photo')
 const weather = document.querySelector('.weather')
 const temperature = document.querySelector('.temperature')
 const humidity = document.querySelector('.humidity')
+const wrapper = document.querySelector('.wrapper')
+const slider = document.querySelector('.slider')
 
 const API_KEY = '&appid=0614c6ee1bc1e5131a38f423a070cef2'
-const API_LINK_WEATHER = 'https://api.openweathermap.org/data/2.5/weather?lat='
+const API_LINK_WEATHER = 'https://api.openweathermap.org/data/2.5/weather?'
 const API_LINK_GEOCODING = 'http://api.openweathermap.org/geo/1.0/direct?q='
 const API_UNITS = '&units=metric'
 
@@ -18,9 +21,11 @@ const getWeather = () => {
 
     axios.get(URL)
         .then(res => {
+            cityName.textContent = res.data[0].name
+
             const lat = res.data[0].lat
             const lon = res.data[0].lon
-            const URL = API_LINK_WEATHER + lat + '&lon=' + lon + API_KEY + API_UNITS
+            const URL = `${API_LINK_WEATHER}lat=${lat}&lon=${lon}${API_KEY}${API_UNITS}`
 
             axios.get(URL)
                 .then(res => {
@@ -58,8 +63,32 @@ const getWeather = () => {
         })
         .catch(err => console.error(err))
 
-    cityName.textContent = input.value || 'Poznan'
+        input.value = ''
+}
+
+function geoFindMe() {
+    if (!navigator.geolocation){
+     console.log("Geolocation is not supported by your browser")
+      return
+    }
+
+    const success = position => {
+      const latitude  = position.coords.latitude
+      const longitude = position.coords.longitude
+    }
+
+    return navigator.geolocation.getCurrentPosition(success, () => {
+            console.log("Unable to retrieve your location")
+    });
+}
+
+const switchTheme = () => {
+    wrapper.classList.toggle('dark-theme')
+    document.querySelector('.theme-toggle').classList.toggle('slide')
+    //slider.classList.toggle('dark-theme')
 }
 
 getWeather()
-button.addEventListener('click', getWeather)
+userCityBtn.addEventListener('click', geoFindMe)
+cityBtn.addEventListener('click', getWeather)
+slider.addEventListener('click', switchTheme)
