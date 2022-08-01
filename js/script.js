@@ -17,7 +17,6 @@ const API_LINK_GEOCODING = 'http://api.openweathermap.org/geo/1.0/direct?q='
 const API_LINK_REV_GEOCODING = 'http://api.openweathermap.org/geo/1.0/reverse?lat='
 const API_UNITS = '&units=metric'
 
-let lat, lon
 let theme = '#2B2B2B'
 
 const getWeather = () => {
@@ -28,10 +27,9 @@ const getWeather = () => {
         .then(res => {
             cityName.textContent = res.data[0].name
 
-            lat = res.data[0].lat
-            lon = res.data[0].lon
+            const lat = res.data[0].lat
+            const lon = res.data[0].lon
 
-            console.log(`lat ${lat} lon ${lon}`)
             const URL = `${API_LINK_WEATHER}lat=${lat}&lon=${lon}${API_KEY}${API_UNITS}`
 
             axios.get(URL)
@@ -83,8 +81,14 @@ function geoFindMe() {
     }
 
     const success = position => {
-        lat  = position.coords.latitude
-        lon = position.coords.longitude
+        const lat  = position.coords.latitude
+        const lon = position.coords.longitude
+
+        const URL = `${API_LINK_REV_GEOCODING}${lat}&lon=${lon}${API_KEY}`
+
+        axios.get(URL)
+            .then(res => console.log(res.data[0].name))
+            .catch(err => console.log(err))
     }
 
     return navigator.geolocation.getCurrentPosition(success, () => {
@@ -99,7 +103,7 @@ const switchTheme = () => {
     theme === '#2B2B2B' ? theme = '#E8F9FD' : theme = '#2B2B2B'
     btns.forEach(btn => {
         btn.style.color = theme
-        btn.borderColor = theme
+        btn.style.borderColor = theme
     })
 }
 
