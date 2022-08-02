@@ -55,6 +55,8 @@ body {
 
         input {
             padding: .25rem .5rem;
+            border: 1px solid $dark-color;
+            border-radius: 30px;
         }
 
         button {
@@ -64,6 +66,13 @@ body {
             border-radius: 30px;
             cursor: pointer;
             transition: .5s;
+        }
+
+        .warning {
+            margin-left: 2rem;
+            color: #ed4337;
+            font-size: .9rem;
+            letter-spacing: .5px;
         }
     }
 
@@ -118,7 +127,7 @@ body {
         height: 25px;
         width: 25px;
         border-radius: 50%;
-        background-color: #3F4E4F;
+        background-color: #48484a;
         transition: .3s ease-in-out;
     }
 
