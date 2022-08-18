@@ -2,4 +2,10 @@
 
 Simple weather app that shows current temperature, humidity and weather conditions.
 
-Made using JS, Sass and OpenWeather API
+## Technologies
+
+Made using JS, Sass.
+
+## APIs
+
+API request to Open Weather API were handled using axios 
